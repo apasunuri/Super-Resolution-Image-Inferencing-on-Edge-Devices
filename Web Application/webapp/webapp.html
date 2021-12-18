@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"></script>
+		<script src="webapp.js" async defer></script> 
+		<title>
+			Super Resolution Web Application Demo
+		</title>
+	</head>
+	<body>
+		<h1>Super Resolution Web Application Demo</h1>
+		<label for="lr_img">Choose a Picture to Upscale:</label>
+		<input type="file" id="lr_img" name="lr_img" accept="image/png, image/jpeg">
+		<br />
+		<img src="" id="preview">
+		<br />
+		<button id="sr_button" type="button">Super Resolution</button>
+		<canvas id="result"></canvas>
+	</body>
+</html>
