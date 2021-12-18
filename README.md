@@ -4,24 +4,25 @@ This is the final project GitHub repository for COMS 6998: Practical Deep Learni
 
 ## Introduction
 
-Super resolution is an interesting problem that has been around for quite some time. Maybe the most notable example being surveillance photos of criminals being "zoom-and-enhance"d in CSI and similar TV shows. However, with deep neural nets, it seems like this sci-fi-ish technology is more and more becoming a reality, hence we were interested in looking into different models used to actually perform super resolution. Also, typically when we think deep learning we consider massive clusters with large amounts of GPU compute power. But we were interested in how an ordinary person might get to use this technology. So we measured the performance of running super resolution (from an already trained model) converted to run client-side on a web application or on a phone directly without having to leverage cloud computing resources.
+Super-resolution is an interesting problem that has been around for quite some time. Maybe the most notable example is surveillance photos of criminals being "zoom-and-enhance"d in CSI and similar TV shows. However, with deep neural nets, it seems like this sci-fi-ish technology is more and more becoming a reality, hence we were interested in looking into different models used to perform super-resolution. Also, typically when we think deep learning we consider massive clusters with large amounts of GPU compute power. But we were interested in how an ordinary person might get to use this technology. So we measured the performance of running super-resolution (from an already trained model) converted to run client-side on a web application or a phone directly without having to leverage cloud computing resources.
 
 ## Technical details
 
-We used three SR architectures - SRCNN, EDSR and WDSR. The networks were trained using TensorFlow and Keras on Python, on a Google Cloud instance with a single P100 GPU. The dataset used was custom-built and it is a combination of the General100 Super Resolution dataset and a subset of COCO, with 1500 images (960 train, 240 validation, 300 test). Then, they were converted to TFLite and TF.js versions so that they could run inferencing directly from an Android device or a browser respectively. For the same purpose, we have built an Android app using Android Studio and a webapp in plain HTML and JavaScript (with TensorFlow.js included).
+We used three SR architectures - SRCNN, EDSR, and WDSR. The networks were trained using TensorFlow and Keras on Python, on a Google Cloud instance with a single P100 GPU. The dataset used was custom-built and it is a combination of the General100 Super Resolution dataset and a subset of COCO, with 1500 images (960 train, 240 validation, 300 test). Then, they were converted to TFLite and TF.js versions so that they could run inferencing directly from an Android device or a browser respectively. For the same purpose, we have built an Android app using Android Studio and a web app in plain HTML and JavaScript (with TensorFlow.js included).
 
 ## Code
 
-We have included the Python code used for training the models, as well as the source code of the webapp and the Android app we used to test performance.
+We have included the Python code used for training the models, as well as the source code of the web app and the Android app we used to test performance.
 
 ## Commands
 
-You can run training by
+You can run train a model by
 
     python main.py --model "<MODEL_NAME>"
 
 This gives .h5 format trained models. <MODEL_NAME> can either be "srcnn", "wdsr", or "edsr"
-To convert them to TF.js format for the webapp (note: you need TF.js installed), use
+
+To convert them to TF.js format for the web app (note: you need TF.js installed), use
 
     tensorflowjs_converter --input_format keras <model name>.h5 <output directory>
 
@@ -29,10 +30,10 @@ To convert them to TFLite format for the Android app, use
 
     tflite_convert --keras_model_file=/path/to/model.h5 --output_file=/path/to/output.tflite
 
-For the webapp, you need to serve the model files from a local HTTP server. We used livehttp for this purpose, but any simple HTTP fileserver should work as long as it supports CORS.
+For the web app, you need to serve the model files from a local HTTP server. We used livehttp for this purpose, but any simple HTTP file server should work as long as it supports CORS.
 For the Android app, first clone the repository:
 
-    git clone whatever
+    git clone https:
 
 Then you can import the project into Android Studio directly and build/run on your Android device of choice.
 
