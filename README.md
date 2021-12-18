@@ -33,7 +33,7 @@ To convert them to TFLite format for the Android app, use
 For the web app, you need to serve the model files from a local HTTP server. We used livehttp for this purpose, but any simple HTTP file server should work as long as it supports CORS.
 For the Android app, first clone the repository:
 
-    git clone https:
+    git clone https://github.com/apasunuri/Super-Resolution-Image-Inferencing-on-Edge-Devices.git
 
 Then you can import the project into Android Studio directly and build/run on your Android device of choice.
 
